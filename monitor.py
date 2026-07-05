@@ -38,11 +38,37 @@ def check_page():
         page = browser.new_page()
 
         page.goto(BOOKING_URL, timeout=60000)
+
+        # wait for booking widget to fully load
+        page.wait_for_timeout(7000)
+
         content = page.content().lower()
 
         browser.close()
 
-        return TARGET_KEYWORD in content
+        # STRONG indicators of real availability
+        positive_signals = [
+            "select a time",
+            "choose a time",
+            "12:",
+            "13:",
+            "14:",
+            "available times"
+        ]
+
+        # STRONG indicators of no availability
+        negative_signals = [
+            "no availability",
+            "fully booked",
+            "no tables available",
+            "try another date"
+        ]
+
+        has_positive = any(x in content for x in positive_signals)
+        has_negative = any(x in content for x in negative_signals)
+
+        # Only alert if we see positive signals AND no negative signals
+        return has_positive and not has_negative
 
 
 def main():
