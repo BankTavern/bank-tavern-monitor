@@ -3,7 +3,7 @@ import json
 import requests
 from playwright.sync_api import sync_playwright
 
-BOOKING_URL = "https://www.banktavern.com/contact-us/"
+BOOKING_URL = "https://www.banktavern.com/"
 TARGET_KEYWORD = "sunday"
 
 STATE_FILE = "state.json"
