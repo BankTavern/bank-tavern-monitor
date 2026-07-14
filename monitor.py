@@ -60,7 +60,7 @@ def main():
                 "🎯 Possible availability detected\n\n"
                 "👥 Checking party sizes: 2, 4, 6\n"
                 "⏰ Look for 12:00–16:00 slots\n\n"
-                "Book here: https://www.banktavern.com/"
+                "Book here: https://www.banktavern.com/contact-us/"
             )
             send_telegram(message)
         else:
